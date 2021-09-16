@@ -4,45 +4,47 @@ using UnityEngine;
 
 public class ActionsManager : MonoBehaviour
 {
-
     public Animator anim;
     public Transform hand;
-    GameObject grabbedObject = null;
-    string grabbedObjectName = "";
-    // Start is called before the first frame update
-    public void SetSpeed(float speed){
+    public UsableObjects grabbedObject = null;
+    string usableObjectName = "";
+
+    public void SetSpeed(float speed)
+    {
         anim.SetFloat("speed", speed);
     }
-
-    public void Attack() {
+    public void Attack()
+    {
         anim.SetBool("attack", true);
-        Invoke("StopAttack", 2f);
     }
-
-    public void StopAttack() {
+    public void StopAttack()
+    {
         anim.SetBool("attack", false);
     }
     public void PlayAttackSound()
     {
         print("sound");
     }
-    public void GetObject(GameObject asset)
+    public void GetObject(UsableObjects usableObject)
     {
+        if (grabbedObject != null && usableObject.name == usableObjectName)
+        {
+            ResetGrabbedItems();
+            return;
+        }
         ResetGrabbedItems();
-        if (asset.name != grabbedObjectName)
-        {
-            grabbedObject = Instantiate(asset, hand);
-            grabbedObject.transform.localPosition = Vector3.zero;
-            grabbedObjectName = asset.name;
-        }
-        else
-        {
-            grabbedObjectName = "";
-        }
+        usableObjectName = usableObject.name;
+        grabbedObject = Instantiate(usableObject, hand);
+        grabbedObject.transform.localPosition = Vector3.zero;
     }
     void ResetGrabbedItems()
     {
         if (grabbedObject != null)
-            Destroy(grabbedObject);
+            Destroy(grabbedObject.gameObject);
+        grabbedObject = null;
+    }
+    public UsableObjects HasSomethingUsableInHand()
+    {
+        return hand.GetComponentInChildren<UsableObjects>();
     }
 }
