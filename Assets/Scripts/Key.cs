@@ -2,25 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : InteractiveObject, IInventoryItem
+public class Key : InteractiveObject
 {
-    public string Name
-    {
-        get
-        {
-            return "Key";
-        }
-    }
-
-    public Sprite _Image = null;
-
-    public Sprite Image
-    {
-        get
-        {
-            return _Image;
-        }
-    }
 
     public void OnPickup()
     {
@@ -35,7 +18,4 @@ public class Key : InteractiveObject, IInventoryItem
         transform.SetParent(go.transform);
         transform.position += new Vector3(0, 2, 0);
     } */
-    public override void OnSomethingExit(GameObject go){
-
-    }
 }

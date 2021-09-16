@@ -9,8 +9,9 @@ public class Character : MonoBehaviour
     public int score = 0;
     public GameObject key = null;
 
-    public Inventory inventoryPanel;
-
+    public InteractiveObject ioActive = null;
+    public Transform hand;
+    public Inventory inventory;
     public ActionsManager actions;
     public float speed;
     public float accelerator;
@@ -50,49 +51,22 @@ public class Character : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
         }
     }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    public void OnInteract()
     {
-        IInventoryItem item = hit.collider.GetComponent<IInventoryItem>();
-        if (item != null)
-        {
-            inventoryPanel.AddItem(item);
-        }
+       // Pickup pickUpObject = inventory.GetPickupObject();
+
+        if (ioActive != null)
+            ioActive.OnInteract(this);
     }
 
-    private void OnCollisionEnter(Collision other) {
-        IInventoryItem item = other.collider.GetComponent<IInventoryItem>();
-        if (item != null)
-        {
-
-            inventoryPanel.AddItem(item);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other){
-        IInventoryItem item = other.gameObject.GetComponent<IInventoryItem>();
-        if (item != null)
-        {
-            print("Collider");
-            inventoryPanel.AddItem(item);
-        }
-        /* InteractiveObject io = other.gameObject.GetComponent<InteractiveObject>();
-        if(io != null){
-            //Choqué con un InteractiveObject
-            io.OnSomethingEnter(gameObject);
-            score += io.score;
-            if(io.name == "Coin"){
-
-            }else if(io.gameObject.GetComponent<Key>()){
-                key = io.gameObject;
-            }
-        } */
-    }
-    private void OnTriggerExit(Collider other){
+    private void OnTriggerEnter(Collider other)
+    {
         InteractiveObject io = other.gameObject.GetComponent<InteractiveObject>();
-        if(io != null){
-            //Choqué con un InteractiveObject
-            io.OnSomethingExit(gameObject);
-        }
+        if (io != null)  { ioActive = io; }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        InteractiveObject io = other.gameObject.GetComponent<InteractiveObject>();
+        if (io != null) { ioActive = null; }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Coin : InteractiveObject
 {
-    public override void OnSomethingEnter(GameObject go){
+    /* public override void OnSomethingEnter(GameObject go){
         //SUMA SCORE+1, DISPARA SOUND Y SE DESTRUYE
         audioclip.Play(0);
         print("soy coin: "+ gameObject.name);
@@ -13,5 +13,5 @@ public class Coin : InteractiveObject
         if(go.name=="Character"){
             Destroy(gameObject);
         }
-    }
+    } */
 }

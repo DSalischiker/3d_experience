@@ -5,45 +5,38 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    /* public List<InteractiveObject> all; */
-    private const int slots = 9;
+    public List<InteractiveObject> all;
+    public int totalItems = 1;
+    public InventoryUI ui;
 
-    public List<IInventoryItem> mItems = new List<IInventoryItem>();
-
-    public event EventHandler<InventoryEventArgs> ItemAdded;
-
-    public void AddItem(IInventoryItem item)
+    public void Add(InteractiveObject io)
     {
-        if(mItems.Count < slots)
-        {
-            Collider collider = (item as MonoBehaviour).GetComponent<Collider>();
-            if (collider.enabled)
-            {
-                collider.enabled = false;
-                mItems.Add(item);
-                item.OnPickup();
-
-                if (ItemAdded != null)
-                {
-                    ItemAdded(this, new InventoryEventArgs(item));
-                }
-            }
-        }
+        if(IsFull()) return;
+        all.Add(io);
+        ui.Add(io);
     }
-    /* public void Add(InteractiveObject io)
-    {
-        if (all.Count >= inventoryLimit)
-        {
-            return;
-        } else
-        {
-            all.Add(io);
-        }
-
-    }
-
     public void Remove(InteractiveObject io)
     {
         all.Remove(io);
-    } */
+        ui.Remove(io);
+    }
+    public bool HasItem(string itemName)
+    {
+        return false;
+    }
+    public bool IsFull()
+    {
+        if (all.Count >= totalItems)
+            return true;
+        return false;
+    }
+    public Pickup GetPickupObject()
+    {
+        foreach(InteractiveObject io in all)
+        {
+            if (io.GetComponent<Pickup>())
+                return io.GetComponent<Pickup>();
+        }
+        return null;
+    }
 }

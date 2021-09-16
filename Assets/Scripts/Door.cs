@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : InteractiveObject
 {
-    public GameObject needsKey = null;
+    /* public GameObject needsKey = null;
     public override void OnSomethingEnter(GameObject go){
         base.OnSomethingEnter(go);
         //SE ABRE
@@ -29,5 +29,5 @@ public class Door : InteractiveObject
     }
     private void Close(){
         gameObject.transform.GetChild(0).position -= new Vector3(0, 2, 0);
-    }
+    } */
 }
