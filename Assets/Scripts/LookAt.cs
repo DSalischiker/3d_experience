@@ -5,26 +5,35 @@ using UnityEngine;
 public class LookAt : MonoBehaviour
 {
     public Transform target;
-    public bool targetNearBy;
     public float speed = 0.7f;
-
+    private Vector3 targetPosition;
     // Update is called once per frame
+
+    void Start() {
+        targetPosition = transform.position + (transform.forward * 10);
+    }
+
     void Update()
     {
-        if (targetNearBy)
-        {
-            Vector3 direction = target.position - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed * Time.deltaTime);
+        if(target == null) {
+            return;
+        }else{
+            Vector3 direction = target.position;
+            direction.y = transform.position.y;
+            targetPosition = Vector3.Lerp(targetPosition, direction, speed * Time.deltaTime);
+            transform.LookAt(targetPosition);
+            print(targetPosition);
+            /* Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed * Time.deltaTime); */
         }
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.transform == target)
+        if (other.gameObject.GetComponent<Character>())
         {
-            targetNearBy = true;
+            target = other.transform;
         }
     }
 }
