@@ -28,4 +28,7 @@ public class InteractiveObject : MonoBehaviour
             pickup.Drop();
         }
     }
+    public virtual void openIt() {
+
+    }
 }

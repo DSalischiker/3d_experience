@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEditor;
 #endif
 
-public class EzCameraSettings : ScriptableObject 
+public class EzCameraSettings : ScriptableObject
 {
 
     [MenuItem("Eazy Camera/Create Camera Settings")]
@@ -22,11 +22,11 @@ public class EzCameraSettings : ScriptableObject
         ResetCameraSettings();
     }
 
-    public float OffsetHeight = 1.5f;
+    public float OffsetHeight = 3f;
     public float LateralOffset = 0f;
     public float MaxLateralOffset = 5f;
-    public float OffsetDistance = 4.5f;
-    public float MaxDistance = 15f;
+    public float OffsetDistance = 15f;
+    public float MaxDistance = 25f;
     public float MinDistance = 1f;
     public float ZoomSpeed = 10f;
     public float ResetSpeed = 5f;
@@ -40,9 +40,9 @@ public class EzCameraSettings : ScriptableObject
     public float ResetPositionDistance { get; set; }
     public float ZoomDistance { get; set; }
 
-    private float m_defaultHeight = 1f;
+    private float m_defaultHeight = 3f;
     private float m_defaultLateralOffset = 0f;
-    private float m_defaualtDistance = 5f;
+    private float m_defaualtDistance = 15f;
 
     private void OnEnable()
     {

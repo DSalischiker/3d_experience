@@ -22,7 +22,7 @@ public class LookAt : MonoBehaviour
             direction.y = transform.position.y;
             targetPosition = Vector3.Lerp(targetPosition, direction, speed * Time.deltaTime);
             transform.LookAt(targetPosition);
-            print(targetPosition);
+
             /* Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed * Time.deltaTime); */
         }

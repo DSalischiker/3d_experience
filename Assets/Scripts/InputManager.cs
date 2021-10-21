@@ -15,18 +15,20 @@ public class InputManager : MonoBehaviour
         verticalAxis = Input.GetAxis("Vertical");
         horizontalAxis = Input.GetAxis("Horizontal");
 
-        if(Input.GetButtonDown("Action" + id))
+        if(Input.GetMouseButtonDown(0))
             character.OnInteract();
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        /* if(Input.GetButtonDown("Jump"))
+            print("salto"); */
+        /* if (Input.GetKey(KeyCode.LeftShift))
             character.Run(true);
         else
-            character.Run(false);
+            character.Run(false); */
 
-        if(Input.GetMouseButtonDown(1)){
+        /* if(Input.GetMouseButtonDown(1)){
             print("attack");
             character.actions.Attack();
-            /* character.isAttacking = true; */
-        }
+
+        } */
     }
 }

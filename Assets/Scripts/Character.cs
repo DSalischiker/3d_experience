@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
     public InputManager inputManager;
     public float moveSpeed, rotateSpeed;
     public int score = 0;
-    public GameObject key = null;
+    /* public GameObject key = null; */
 
     public InteractiveObject ioActive = null;
     public Transform hand;
@@ -24,12 +24,12 @@ public class Character : MonoBehaviour
         /* if(rotationValue != 0){
             transform.Rotate(Vector3.up * rotationValue * rotationSpeed * Time.deltaTime);
         } */
-        Vector3 moveVector = ((Vector3.forward * inputManager.verticalAxis) * moveSpeed * Time.deltaTime);
+        /* Vector3 moveVector = ((Vector3.forward * inputManager.verticalAxis) * moveSpeed * Time.deltaTime);
         if(moveVector != Vector3.zero){
             transform.Translate(moveVector);
         }
         speed = moveVector.z + accelerator;
-        actions.SetSpeed(speed);
+        actions.SetSpeed(speed); */
     }
 
      public void Run(bool isRunning)
@@ -61,6 +61,7 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        /* print("en trigger" +  other); */
         InteractiveObject io = other.gameObject.GetComponent<InteractiveObject>();
         if (io != null)  { ioActive = io; }
     }
