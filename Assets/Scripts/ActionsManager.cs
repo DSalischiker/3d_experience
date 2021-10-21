@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ActionsManager : MonoBehaviour
 {
-    public Animator anim;
+    /* public Animator anim; */
     public Transform hand;
     public UsableObjects grabbedObject = null;
     string usableObjectName = "";
 
-    public void SetSpeed(float speed)
+    /* public void SetSpeed(float speed)
     {
         anim.SetFloat("speed", speed);
     }
@@ -20,7 +20,7 @@ public class ActionsManager : MonoBehaviour
     public void StopAttack()
     {
         anim.SetBool("attack", false);
-    }
+    } */
     public void PlayAttackSound()
     {
         print("sound");
