@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Turning : MonoBehaviour
 {
-    public float rotationValue;
+    public Vector3 rotationValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +14,6 @@ public class Turning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(rotationValue, 0, 0 * Time.deltaTime);
+        transform.Rotate(rotationValue * Time.deltaTime);
     }
 }

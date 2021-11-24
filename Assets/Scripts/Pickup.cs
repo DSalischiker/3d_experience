@@ -7,9 +7,10 @@ public class Pickup : MonoBehaviour
     Transform originalParent;
     Character character;
 
+
     private void Start()
     {
-        originalParent = transform.parent;
+      originalParent = transform.parent;
     }
     public void OnGrab(Character character)
     {

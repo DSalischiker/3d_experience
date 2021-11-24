@@ -19,16 +19,13 @@ public class LookAtTarget : MonoBehaviour
     public void LookAt(Character character) {
         if (character == null)
         {
+            target = null;
             return;
         }
-
-        Vector3 direction = character.transform.position;
-        direction.y = transform.position.y;
-        targetPosition = Vector3.Lerp(targetPosition, direction, speed * Time.deltaTime);
-        transform.LookAt(targetPosition);
+        target = character.transform;
     }
 
-    /* void Update()
+    void Update()
     {
         if(target == null) {
             return;
@@ -40,7 +37,7 @@ public class LookAtTarget : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+   /*  private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Character>())
         {
